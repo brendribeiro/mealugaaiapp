@@ -9,3 +9,53 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  hash      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  items     Item[]
+  Rental    Rental[]
+
+  @@map("users")
+}
+
+model Item {
+  id          String   @id @default(uuid())
+  description String?
+  category    String?
+  sector      String?
+  price       Float
+  amount      Int
+  ownerId     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  owner       User     @relation(fields: [ownerId], references: [id])
+  Rental      Rental[]
+
+  @@map("items")
+}
+
+model Rental {
+  id          String   @id @default(uuid())
+  itemId      String
+  userId      String
+  total       Float
+  amount      Int
+  rental_date DateTime
+  status      Status   @default(EM_ANDAMENTO)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  item        Item     @relation(fields: [itemId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
+
+  @@map("rentals")
+}
+
+enum Status {
+  EM_ANDAMENTO
+  BLOQUEADO
+  CONCLUIDO
+}
