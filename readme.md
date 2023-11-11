@@ -20,6 +20,10 @@ Foi utilizado Swagger para realizar a documentação e modelagem dos endpoints d
 ```
 localhost:3000/api
 ```
+PROD:
+```
+https://mealugaaiapp.cyclic.app/api
+```
 
 ## 🧑‍💻 Como rodar o projeto
 Após clonar o repositório em sua máquina rode o comando abaixo:
