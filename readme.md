@@ -18,13 +18,13 @@ A finalidade primordial é mitigar os impactos do consumo excessivo e, simultane
 ## 📄 Documentação 
 Foi utilizado Swagger para realizar a documentação e modelagem dos endpoints do projeto, pensando em ajudar futuramente a utilização da API. Onde pode ser acessado na URI:
 ```
-/swagger-ui/index.html
+localhost:3000/api
 ```
 
 ## 🧑‍💻 Como rodar o projeto
 Após clonar o repositório em sua máquina rode o comando abaixo:
 ```
-yarn start dev
+npm start dev
 ```
 
 ## ✨ Postman
