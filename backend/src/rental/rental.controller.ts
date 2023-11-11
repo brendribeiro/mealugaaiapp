@@ -3,9 +3,11 @@ import { GetUser } from 'src/auth/decorator';
 import { CreateRentalDto } from './dto/create-rental.dto';
 import { RentalService } from './rental.service';
 import { JwtGuard } from 'src/auth/guard';
+import { ApiTags } from '@nestjs/swagger';
 
 @UseGuards(JwtGuard)
 @Controller('rental')
+@ApiTags('rental')
 export class RentalController {
   constructor(private service: RentalService) {}
 

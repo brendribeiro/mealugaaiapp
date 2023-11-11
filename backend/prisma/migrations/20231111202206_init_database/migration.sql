@@ -6,6 +6,9 @@ CREATE TABLE "users" (
     "id" TEXT NOT NULL,
     "username" TEXT NOT NULL,
     "hash" TEXT NOT NULL,
+    "firstName" TEXT,
+    "lastName" TEXT,
+    "email" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -15,6 +18,7 @@ CREATE TABLE "users" (
 -- CreateTable
 CREATE TABLE "items" (
     "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
     "description" TEXT,
     "category" TEXT,
     "sector" TEXT,
@@ -33,7 +37,6 @@ CREATE TABLE "rentals" (
     "itemId" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "total" DOUBLE PRECISION NOT NULL,
-    "amount" INTEGER NOT NULL,
     "rental_date" TIMESTAMP(3) NOT NULL,
     "status" "Status" NOT NULL DEFAULT 'EM_ANDAMENTO',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,

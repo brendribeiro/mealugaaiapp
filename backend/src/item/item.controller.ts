@@ -12,9 +12,11 @@ import { GetUser } from 'src/auth/decorator';
 import { JwtGuard } from 'src/auth/guard';
 import { CreateItemDto, EditItemDto } from './dto';
 import { ItemService } from './item.service';
+import { ApiTags } from '@nestjs/swagger';
 
 @UseGuards(JwtGuard)
 @Controller('item')
+@ApiTags('item')
 export class ItemController {
   constructor(private service: ItemService) {}
 
