@@ -1,21 +1,27 @@
-import { IsNumber, IsString } from 'class-validator';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class EditItemDto {
   @IsString()
-  name: string;
+  @IsOptional()
+  name?: string;
 
   @IsString()
-  description: string;
+  @IsOptional()
+  description?: string;
 
   @IsString()
-  category: string;
+  @IsOptional()
+  category?: string;
 
   @IsString()
-  sector: string;
+  @IsOptional()
+  sector?: string;
 
   @IsNumber()
-  price: number;
+  @IsOptional()
+  price?: number;
 
   @IsNumber()
-  amount: number;
+  @IsOptional()
+  amount?: number;
 }

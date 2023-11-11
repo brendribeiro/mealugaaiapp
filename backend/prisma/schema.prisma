@@ -47,7 +47,6 @@ model Rental {
   itemId      String
   userId      String
   total       Float
-  amount      Int
   rental_date DateTime
   status      Status   @default(EM_ANDAMENTO)
   createdAt   DateTime @default(now())

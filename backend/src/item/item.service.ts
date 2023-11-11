@@ -17,8 +17,6 @@ export class ItemService {
   }
 
   async getMyItems(ownerId: string) {
-    console.log(ownerId);
-
     return this.service.item.findMany({
       where: {
         ownerId: ownerId,
