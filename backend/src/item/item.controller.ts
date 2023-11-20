@@ -6,13 +6,16 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UseGuards,
 } from '@nestjs/common';
+import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { Item } from '@prisma/client';
 import { GetUser } from 'src/auth/decorator';
 import { JwtGuard } from 'src/auth/guard';
+import { EditUserDto } from 'src/user/dtos';
 import { CreateItemDto, EditItemDto } from './dto';
 import { ItemService } from './item.service';
-import { ApiTags } from '@nestjs/swagger';
 
 @UseGuards(JwtGuard)
 @Controller('item')
@@ -21,36 +24,51 @@ export class ItemController {
   constructor(private service: ItemService) {}
 
   @Get()
-  getItems() {
-    return this.service.getItems();
+  @ApiOperation({ summary: 'Get all items with search' })
+  async getItems(
+    @Query('name') name: string,
+    @Query('category') category: string,
+    @Query('sector') sector: string,
+  ): Promise<Item[]> {
+    return await this.service.getItems({ name, category, sector });
   }
 
   @Get('/my')
-  getMyItems(@GetUser('id') ownerId: string) {
-    return this.service.getMyItems(ownerId);
+  @ApiOperation({ summary: 'Get your items' })
+  async getMyItems(@GetUser('id') ownerId: string) {
+    return await this.service.getMyItems(ownerId);
   }
 
   @Get(':id')
-  getItemById(@Param('id') id: string) {
-    return this.service.getItemById(id);
+  @ApiOperation({ summary: 'Get a item by id' })
+  async getItemById(@Param('id') id: string) {
+    return await this.service.getItemById(id);
   }
 
   @Post()
-  createItem(@GetUser('id') ownerId: string, @Body() dto: CreateItemDto) {
-    return this.service.createItem(ownerId, dto);
+  @ApiBody({ type: CreateItemDto })
+  @ApiOperation({ summary: 'Create a item' })
+  async createItem(@GetUser('id') ownerId: string, @Body() dto: CreateItemDto) {
+    return await this.service.createItem(ownerId, dto);
   }
 
   @Delete(':id')
-  deleteItem(@GetUser('id') ownerId: string, @Param('id') itemId: string) {
-    return this.service.deleteItem(ownerId, itemId);
+  @ApiOperation({ summary: 'Delete a item' })
+  async deleteItem(
+    @GetUser('id') ownerId: string,
+    @Param('id') itemId: string,
+  ) {
+    return await this.service.deleteItem(ownerId, itemId);
   }
 
   @Patch(':id')
-  editItemById(
+  @ApiBody({ type: EditUserDto })
+  @ApiOperation({ summary: 'Update a item' })
+  async editItemById(
     @GetUser('id') ownerId: string,
     @Param('id') itemId: string,
     @Body() dto: EditItemDto,
   ) {
-    return this.service.editItemById(ownerId, itemId, dto);
+    return await this.service.editItemById(ownerId, itemId, dto);
   }
 }
