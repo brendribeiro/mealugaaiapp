@@ -18,9 +18,9 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('API Documentation')
-    .setDescription('The API description')
+    .setDescription('mealugaaiapp api doc')
     .setVersion('1.0')
-    .addTag('nestjs-swagger-example')
+    .addTag('mealugaaiapp')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

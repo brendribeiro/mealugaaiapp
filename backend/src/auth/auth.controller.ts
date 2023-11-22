@@ -1,6 +1,6 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { AuthDto } from './dtos';
+import { AuthDto, AuthRegisterDto } from './dtos';
 import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Controller('auth')
@@ -9,9 +9,9 @@ export class AuthController {
   constructor(private service: AuthService) {}
 
   @Post('signup')
-  @ApiBody({ type: AuthDto })
+  @ApiBody({ type: AuthRegisterDto })
   @ApiOperation({ summary: 'Create a account' })
-  signup(@Body() dto: AuthDto) {
+  signup(@Body() dto: AuthRegisterDto) {
     return this.service.signup(dto);
   }
 
