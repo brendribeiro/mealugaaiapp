@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 const API_URL = 'https://mealugaaiapp.cyclic.app';
 
 // Configurar o Axios para incluir o token de autenticação em todas as requisições
