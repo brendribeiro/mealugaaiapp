@@ -27,8 +27,15 @@ https://mealugaaiapp.cyclic.app/api
 
 ## 🧑‍💻 Como rodar o projeto
 Após clonar o repositório em sua máquina rode o comando abaixo:
+Backend
 ```
 npm start dev
+```
+<br />
+
+Frontend
+```
+npm run dev
 ```
 
 ## ✨ Postman
